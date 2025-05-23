@@ -58,9 +58,9 @@ def agent_httptrigger(req: func.HttpRequest) -> func.HttpResponse:
                 status_code=404
             )
 
-        thread = project_client.agents.get_thread(threadid) if threadid else None
+        thread = project_client.threads.get(threadid) if threadid else None
         if not thread:
-            thread = project_client.agents.create_thread()
+            thread = project_client.threads.create()
 
         project_client.agents.create_message(
             thread_id=thread.id,
