@@ -5,7 +5,8 @@ import os
 import time
 import uuid
 import requests
-from azure.identity import DefaultAzureCredential, AzureError
+from azure.identity import DefaultAzureCredential
+from azure.core.exceptions import AzureError    
 
 
 #  ──────────────────────────────────────────────────────────────────────────
