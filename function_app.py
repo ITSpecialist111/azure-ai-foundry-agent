@@ -41,10 +41,14 @@ def agent_httptrigger(req: func.HttpRequest) -> func.HttpResponse:
         )
 
     try:
-        project_client = AIProjectClient.from_connection_string(
-            credential=DefaultAzureCredential(),
-            conn_str=conn_str 
+        project_client = AIProjectClient(
+            endpoint=conn_str.split(";")[0],
+            project_id=conn_str.split(";")[1],
+            resource_group_name=conn_str.split(";")[2],
+            project_name=conn_str.split(";")[3],
+            credential=DefaultAzureCredential()
         )
+
 
         agent = project_client.agents.get_agent(agentid)
         if not agent:
